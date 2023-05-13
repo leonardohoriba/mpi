@@ -1,3 +1,6 @@
+// Compile: $ mpicc -o questao_3 questao_3.c 
+// Run: $ mpirun -np 4 questao3
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
