@@ -1,5 +1,5 @@
-// Compile: $ mpicc questao_2.c -o questao_2
-// Run: $ mpiexec -np 4 ./questao_2
+// Compile: $ mpicc -o questao_2 questao_2.c 
+// Run: $ mpirun -np 4 questao2
 #include <stdio.h>
 #include <stdlib.h>
 #include <mpi.h>
@@ -7,15 +7,17 @@
 #define N 4
 
 int main(int argc, char **argv) {
-    MPI_Init(&argc, &argv);
     
+    // Inicialização
+    MPI_Init(&argc, &argv);
     int world_size, world_rank;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     
     int matrix[N][N];
+    // criando uma matrix de forma aleatoria 
     if (world_rank == 0) {
-        srand(1234);
+        srand(4444);
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 matrix[i][j] = rand() % 10;

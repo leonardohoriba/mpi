@@ -5,8 +5,8 @@
 #define N 4
 
 int main(int argc, char **argv) {
+    // Inicialização
     MPI_Init(&argc, &argv);
-    
     int world_size, world_rank;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
         vector[i] = rand() % 10;
     }
     
+    //imicializando uma matrix com todos os valores 0
     int matrix[N][N];
     if (world_rank == 0) {
         for (int i = 0; i < N; i++) {
@@ -26,6 +27,7 @@ int main(int argc, char **argv) {
         }
     }
     
+    // cada vetor sendo enviado ao nó pai para gerar a matrix
     MPI_Gather(vector, N, MPI_INT, matrix, N, MPI_INT, 0, MPI_COMM_WORLD);
     
     if (world_rank == 0) {
