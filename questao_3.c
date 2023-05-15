@@ -1,4 +1,4 @@
-// Compile: $ mpicc -o questao_3 questao_3.c 
+// Compile: $ mpicc -o questao3 questao3.c 
 // Run: $ mpirun -np 4 questao3
 
 #include <stdio.h>
@@ -13,18 +13,14 @@ int main(int argc, char **argv) {
     int world_size, world_rank;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-    
-    int vector[N];
-    srand(world_rank + 1);
-    for (int i = 0; i < N; i++) {
-        vector[i] = rand() % 10;
-    }
-    
+    int i=0,j=0;
+  
+    int vector[N] ={world_rank,world_rank,world_rank,world_rank}, mat[4][4];
     //imicializando uma matrix com todos os valores 0
     int matrix[N][N];
     if (world_rank == 0) {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        for (i = 0; i < N; i++) {
+            for (j = 0; j < N; j++) {
                 matrix[i][j] = 0;
             }
         }
@@ -35,8 +31,8 @@ int main(int argc, char **argv) {
     
     if (world_rank == 0) {
         printf("Matriz recebida:\n");
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        for (i = 0; i < N; i++) {
+            for (j = 0; j < N; j++) {
                 printf("%d ", matrix[i][j]);
             }
             printf("\n");
