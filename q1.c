@@ -1,5 +1,7 @@
-// Compile: $ mpicc questao_1.c -o questao_1
-// Run: $ mpiexec -n 4 ./questao_1
+// Compile: $ mpicc q1.c -o q1
+// Run: $ mpiexec -n <num_procs> ./q1
+
+
 #include <stdio.h>
 #include <mpi.h>
 
